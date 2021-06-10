@@ -1,0 +1,10 @@
+$color1: #ffffff;
+$color2: #000000;
+
+$font-family1: '', Arial, sans-serif;
+
+$breakpoints: (
+    "1": ("(max-width: 1480px)"),
+    "2": ("(max-width: 749px)"),
+    "3": ("(max-width: 1870px)"),
+);

@@ -1,0 +1,86 @@
+@mixin font($font_name, $file_name, $weight, $style) {
+    @font-face {
+        font-family: $font_name;
+        font-display: swap;
+        src: url('../assets/fonts/#{$file_name}.woff2') format('woff2'), url('../assets/fonts/#{$file_name}.woff') format('woff');
+        font-weight: #{$weight};
+        font-style: #{$style};
+    }
+}
+
+@mixin layer($position: absolute, $top: 0, $left: $top, $bottom: $top, $right: $top) {
+    content: '';
+    position: $position;
+    top: $top;
+    left: $left;
+    bottom: $bottom;
+    right: $right;
+}
+
+@mixin block($width: $width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+// one row
+@mixin truncate($text-width) {
+    max-width: $text-width;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// integer rows
+@mixin truncate2($integer) {
+    line-clamp: $integer;
+}
+
+@mixin bg() {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@mixin bullet() {
+    position: absolute;
+    content: '';
+    width: 8px;
+    height: 8px;
+    top: 11px;
+    left: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px transparent;
+    background-color: transparent;
+    display: inline-block;
+}
+
+@mixin m($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media #{inspect(map-get($breakpoints, $breakpoint))} {
+            @content;
+        }
+    } @else {
+        @error "Не указано значение для `#{$breakpoint}`";
+    }
+}
+
+@mixin scroll() {
+    &::-webkit-scrollbar {
+        width: 5px;
+        border: 1px solid #353a44;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #353a44;
+        border-radius: 10px;
+
+        &:hover {
+            background: #a66b6b;
+        }
+    }
+}

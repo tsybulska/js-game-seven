@@ -1,0 +1,44 @@
+.hero {
+    padding: 40px 0;
+
+    ul {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 15px;
+            cursor: pointer;
+
+            svg {
+                margin-left: 5px;
+                transform: rotate(-90deg);
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                svg {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        svg {
+            margin-left: 5px;
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+}

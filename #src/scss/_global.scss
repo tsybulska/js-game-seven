@@ -1,0 +1,82 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    background-color: $color1;
+    color: $color2;
+    font-family: $font-family1;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease-in-out;
+
+    * {
+        transition: all 0.3s ease-in-out;
+    }
+
+    &:hover,
+    &:focus {
+        color: $color1;
+
+        * {
+            color: $color1;
+        }
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+picture * {
+    object-fit: cover;
+}
+
+.header,
+.hero {
+    text-align: center;
+}
