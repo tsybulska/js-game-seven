@@ -1,4 +1,4 @@
-function memoryGame() {
+function memoryGame(flag) {
     let cardArray = [
         {
             name: 'leaf',
@@ -26,11 +26,11 @@ function memoryGame() {
         }
     ]
 
-    const root = document.querySelector('.memory-game__root')
-    const alert = document.querySelector('#memory-game__alert')
-    const alertNewGame = alert.textContent
-    const result = document.querySelector('#memory-game__result')
-    const buttonNewGame = document.querySelector('#memory-game__button')
+    const $root = document.querySelector('.memory-game__root')
+    let $alert = document.querySelector('#memory-game__alert')
+    let $result = document.querySelector('#memory-game__result')
+    const $buttonNewGame = document.querySelector('#memory-game__button')
+    const alertNewGame = $alert.textContent
     const searchImgPath = './assets/icons/sprite.svg#search'
     const checkImgPath = './assets/icons/sprite.svg#check'
     let cards
@@ -51,10 +51,10 @@ function memoryGame() {
             cardDiv.setAttribute('data-memorygameid', i)
             cardDiv.addEventListener('click', flipCard)
             cardDiv.appendChild(cardImg)
-            root.appendChild(cardDiv)
+            $root.appendChild(cardDiv)
         }
 
-        cards = root.querySelectorAll('div')
+        cards = $root.querySelectorAll('div')
     }
 
     function checkForMatch() {
@@ -64,26 +64,26 @@ function memoryGame() {
         const optionTwoId = cardsChosenId[1]
 
         if (optionOneId === optionTwoId) {
-            alert.textContent = 'You have clicked the same image'
+            $alert.textContent = 'You have clicked the same image'
             hideCards()
         } else if (optionOne === optionTwo) {
-            alert.textContent = 'You found a match'
+            $alert.textContent = 'You found a match'
             cards[optionOneId].querySelector('img').setAttribute('src', checkImgPath)
             cards[optionTwoId].querySelector('img').setAttribute('src', checkImgPath)
             cards[optionOneId].removeEventListener('click', flipCard)
             cards[optionTwoId].removeEventListener('click', flipCard)
             cardsWon.push(cardsChosenId)
         } else {
-            alert.textContent = 'Try again'
+            $alert.textContent = 'Try again'
             hideCards()
         }
 
         cardsChosen = []
         cardsChosenId = []
-        result.textContent = cardsWon.length
+        $result.textContent = cardsWon.length
 
         if (cardsWon.length === cardArray.length/2) {
-            alert.textContent = 'Congratulations! You found them all'
+            $alert.textContent = 'Congratulations! You found them all'
         }
     }
 
@@ -104,17 +104,20 @@ function memoryGame() {
         })
     }
 
-    createBoard()
+    $buttonNewGame.addEventListener('click', newGame)
 
-    buttonNewGame.addEventListener('click', newGame)
-
-    function newGame() {
+    function clearGame() {
         cardsChosen = []
         cardsChosenId = []
         cardsWon = []
-        alert.textContent = alertNewGame
-        result.textContent = cardsWon.length
-        root.textContent = ''
+        $alert.textContent = alertNewGame
+        $result.textContent = cardsWon.length
+        $root.textContent = ''
+    }
+
+    function newGame() {
+        $buttonNewGame.textContent = 'New game'
+        clearGame()
         createBoard()
     }
 }

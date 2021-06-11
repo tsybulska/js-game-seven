@@ -68,6 +68,22 @@ a {
     }
 }
 
+button {
+    padding: 2px 5px;
+    background-color: $color1;
+    border: 1px solid $color2;
+    border-radius: 0.2rem;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: $color2;
+        color: $color1;
+    }
+}
+
 img {
     max-width: 100%;
 }

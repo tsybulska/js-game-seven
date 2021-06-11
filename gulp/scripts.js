@@ -12,6 +12,7 @@ module.exports = function scripts() {
     return gulp.src([
         './node_modules/svgxuse/svgxuse.js',
         './#src/scripts/memory-game.js',
+        './#src/scripts/whack-a-mole.js',
         './#src/scripts/scripts.js',
         ])
         .pipe(concat('scripts.js'))

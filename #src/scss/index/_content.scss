@@ -1,14 +1,16 @@
 .content {
     &__item {
-        display: flex;
         justify-content: center;
-    }
+        display: none;
 
-    .memory-game {
-        p, button {
+        p,
+        button {
             margin-bottom: 10px;
         }
+    }
 
+    .memory-game,
+    .whack-a-mole {
         &__root {
             display: flex;
             flex-wrap: wrap;
@@ -28,6 +30,18 @@
                     width: 50%;
                     height: 50%;
                 }
+            }
+        }
+    }
+
+    .whack-a-mole {
+        img {
+            display: none;
+        }
+
+        .mole {
+            img {
+                display: block;
             }
         }
     }
