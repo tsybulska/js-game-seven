@@ -1,4 +1,4 @@
-function memoryGame(flag) {
+function memoryGame(stopGameFlag) {
     let cardArray = [
         {
             name: 'leaf',
@@ -30,7 +30,7 @@ function memoryGame(flag) {
     let $alert = document.querySelector('#memory-game__alert')
     let $result = document.querySelector('#memory-game__result')
     const $buttonNewGame = document.querySelector('#memory-game__button')
-    const alertNewGame = $alert.textContent
+    const alertNewGame = 'Flip two cards'
     const searchImgPath = './assets/icons/sprite.svg#search'
     const checkImgPath = './assets/icons/sprite.svg#check'
     let cards
@@ -104,8 +104,6 @@ function memoryGame(flag) {
         })
     }
 
-    $buttonNewGame.addEventListener('click', newGame)
-
     function clearGame() {
         cardsChosen = []
         cardsChosenId = []
@@ -116,8 +114,16 @@ function memoryGame(flag) {
     }
 
     function newGame() {
+        stopGameFlag = false
         $buttonNewGame.textContent = 'New game'
         clearGame()
         createBoard()
+    }
+
+    $buttonNewGame.addEventListener('click', newGame)
+
+    if (stopGameFlag) {
+        clearGame()
+        $buttonNewGame.textContent = 'Start'
     }
 }

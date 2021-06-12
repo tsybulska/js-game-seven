@@ -1,19 +1,19 @@
-function whackAMole(flag) {
+function whackAMole(stopGameFlag) {
     const $root = document.querySelector('.whack-a-mole__root')
     let $time = document.querySelector('#whack-a-mole__time')
-    const timeNewGame = $time.textContent
     let $result = document.querySelector('#whack-a-mole__result')
     const $buttonNewGame = document.querySelector('#whack-a-mole__button')
     const imgPath = './assets/icons/sprite.svg#smiley'
     const hitImgPath = './assets/icons/sprite.svg#smiley-f'
-
+    
     let squares
     const squareAmount = 6
-    let currentTime = timeNewGame
+    const timeStart = 60
+    let currentTime = timeStart
     let result = 0
     let hitPosition
-    let timer = 0
-    let countDownTimer = 0
+    let timer
+    let countDownTimer
 
     function createBoard() {
         for (let i = 0; i < squareAmount; i++) {
@@ -69,22 +69,28 @@ function whackAMole(flag) {
         }
     }
 
-    $buttonNewGame.addEventListener('click', newGame)
-
     function clearGame() {
         result = 0
         $result.textContent = result
         hitPosition = null
-        currentTime = timeNewGame
-        $time.textContent = currentTime
         clearInterval(timer)
         clearInterval(countDownTimer)
+        currentTime = timeStart
+        $time.textContent = currentTime
         $root.textContent = ''
     }
 
     function newGame() {
+        stopGameFlag = false
         $buttonNewGame.textContent = 'New game'
         clearGame()
         createBoard()
+    }
+
+    $buttonNewGame.addEventListener('click', newGame)
+
+    if (stopGameFlag) {
+        clearGame()
+        $buttonNewGame.textContent = 'Start'
     }
 }

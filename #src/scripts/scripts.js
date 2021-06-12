@@ -17,10 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameList = document.querySelector('.hero').querySelector('ul')
     const gameListItems = gameList.querySelectorAll('li')
     const gameContent = document.querySelectorAll('.content__item')
+    let stopGameFlag = true
 
     openAcc(chooseTitle)
 
-    chooseTitle.addEventListener('click', function (event) {
+    chooseTitle.addEventListener('click', function () {
         openAcc(chooseTitle)
     })
 
@@ -35,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
             item.querySelector('svg').style.opacity = '0'
         })
 
+        memoryGame(stopGameFlag)
+        whackAMole(stopGameFlag)
+        connectFour(stopGameFlag)
+
         for (let i = 0; i < gameContent.length; i++) {
             gameContent[i].style.display = 'none'
 
@@ -47,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     memoryGame()
                 } else if (clickedItemName === 'whack-a-mole') {
                     whackAMole()
+                } else if (clickedItemName === 'connect-four') {
+                    connectFour()
                 }
             }
         }
