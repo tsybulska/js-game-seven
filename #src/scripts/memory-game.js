@@ -30,7 +30,7 @@ function memoryGame(stopGameFlag) {
     let $alert = document.querySelector('#memory-game__alert')
     let $result = document.querySelector('#memory-game__result')
     const $buttonNewGame = document.querySelector('#memory-game__button')
-    const alertNewGame = 'Flip two cards'
+    const alertNewGame = `Let's get started!`
     const searchImgPath = './assets/icons/sprite.svg#search'
     const checkImgPath = './assets/icons/sprite.svg#check'
     let cards

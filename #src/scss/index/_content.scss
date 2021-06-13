@@ -1,21 +1,17 @@
 .content {
-    &__item {
-        justify-content: center;
-        display: none;
+    display: flex;
+    justify-content: center;
 
-        p,
-        button {
-            margin-bottom: 10px;
-        }
+    &__item {
+        display: none;
+        width: 300px;
     }
 
     .memory-game,
-    .whack-a-mole,
-    .connect-four {
+    .whack-a-mole {
         &__root {
             display: flex;
             flex-wrap: wrap;
-            width: 300px;
             margin: 10px 0;
 
             div {
@@ -49,23 +45,33 @@
 
     .connect-four {
         &__root {
+            height: 255px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 10px 0;
+            border: 1px solid black;
+
             div {
                 height: 42px;
                 width: 42px;
+                border-radius: 50%;
+                background: #fafafa;
+                cursor: pointer;
+            }
+
+            .taken {
+                background: none;
+                cursor: auto;
             }
         }
 
-        .player-one,
-        .player-two {
-            border-radius: 10px;
-        }
-
         .player-one {
-            background-color: red;
+            background: linear-gradient(to bottom, #eb1515 0%, #ad0505 100%);
         }
 
         .player-two {
-            background-color: blue;
+            background: linear-gradient(to bottom, rgb(68, 68, 68) 0%, #000000 100%);
         }
     }
 }

@@ -15,7 +15,8 @@ body {
     font-family: $font-family1;
     font-size: 16px;
     font-weight: 400;
-    line-height: 16px;
+    line-height: 1.5;
+    padding-top: 30px;
 }
 
 h1,
@@ -69,6 +70,7 @@ a {
 }
 
 button {
+    margin: 5px 0;
     padding: 2px 5px;
     background-color: $color1;
     border: 1px solid $color2;
@@ -77,8 +79,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
-    &:hover,
-    &:focus {
+    &:hover {
         background-color: $color2;
         color: $color1;
     }

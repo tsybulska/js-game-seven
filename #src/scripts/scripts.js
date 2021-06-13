@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         memoryGame(stopGameFlag)
         whackAMole(stopGameFlag)
-        connectFour(stopGameFlag)
+        //connectFour(stopGameFlag)
 
         for (let i = 0; i < gameContent.length; i++) {
             gameContent[i].style.display = 'none'

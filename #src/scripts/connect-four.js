@@ -73,8 +73,11 @@ function connectFour(stopGameFlag) {
 
     const $root = document.querySelector('.connect-four__root')
     let $alert = document.querySelector('#connect-four__alert')
-    let $result = document.querySelector('#connect-four__result')
+    let $player = document.querySelector('#connect-four__player')
     const $buttonNewGame = document.querySelector('#connect-four__button')
+    const alertNewGame = `Let's get started!`
+    let currentPlayer = 1
+    let winFlag = false
 
     let squares
     const squareAmount = 49 // 7*6 + 7
@@ -83,15 +86,93 @@ function connectFour(stopGameFlag) {
         for (let i = 0; i < squareAmount; i++) {
             let squareDiv = document.createElement('div')
             
-            if (i >= squareAmount - 7) squareDiv.classList.add('taken')
-            //squareDiv.setAttribute('data-connectfour', i)
-            //squareDiv.addEventListener('mouseup', calcResult)
-            $root.appendChild(squareDiv)
+            if (i >= squareAmount - 7) {
+                squareDiv.classList.add('taken')
+            } else {
+                squareDiv.addEventListener('click', checkClick)
+            }
 
+            squareDiv.setAttribute('data-connectfour', i)
+            $root.appendChild(squareDiv)
         }
 
         squares = $root.querySelectorAll('div')
     }
 
-    createBoard()
+    function checkBoard() {
+        for (let i = 0; i < winningArrays.length; i++) {
+            let square1 = squares[winningArrays[i][0]]
+            let square2 = squares[winningArrays[i][1]]
+            let square3 = squares[winningArrays[i][2]]
+            let square4 = squares[winningArrays[i][3]]
+
+            if (square1.classList.contains('player-one') &&
+                square2.classList.contains('player-one') &&
+                square3.classList.contains('player-one') &&
+                square4.classList.contains('player-one')
+            ) {
+                winFlag = true
+                $alert.textContent = 'Player One Wins!'
+            }
+
+            if (square1.classList.contains('player-two') &&
+                square2.classList.contains('player-two') &&
+                square3.classList.contains('player-two') &&
+                square4.classList.contains('player-two')
+            ) {
+                winFlag = true
+                $alert.textContent = 'Player Two Wins!'
+            }
+
+            if (winFlag) {
+                for (let i = 0; i < squares.length - 7; i++) {
+                    squares[i].removeEventListener('click', checkClick)
+                }
+            }
+        }
+    }
+
+    function checkClick(event) {
+        for (let i = 0; i < squares.length - 7; i++) {
+            if ((squares[i] === event.target) &&
+                squares[i + 7].classList.contains('taken') &&
+                !squares[i].classList.contains('taken')) {
+                squares[i].classList.add('taken')
+                squares[i].removeEventListener('click', checkClick)
+
+                if (currentPlayer === 1) {
+                    squares[i].classList.add('player-one')
+                    currentPlayer = 2
+                } else if (currentPlayer === 2) {
+                    squares[i].classList.add('player-two')
+                    currentPlayer = 1
+                }
+
+                $player.textContent = currentPlayer
+            } else $alert.textContent = 'Cant go here'
+            checkBoard()
+        }
+    }
+
+    function clearGame() {
+        currentPlayer = 1
+        $player.textContent = currentPlayer
+        winFlag = false
+        $alert.textContent = alertNewGame
+        $root.textContent = ''
+    }
+
+    function newGame() {
+        stopGameFlag = false
+        $buttonNewGame.textContent = 'New game'
+        clearGame()
+        createBoard()
+    }
+
+    $buttonNewGame.addEventListener('click', newGame)
+
+    if (stopGameFlag) {
+        clearGame()
+        $buttonNewGame.textContent = 'Start'
+    }
 }
