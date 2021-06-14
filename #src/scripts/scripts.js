@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         memoryGame(stopGameFlag)
         whackAMole(stopGameFlag)
-        //connectFour(stopGameFlag)
+        connectFour(stopGameFlag)
+        snake(stopGameFlag)
 
         for (let i = 0; i < gameContent.length; i++) {
             gameContent[i].style.display = 'none'
@@ -54,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     whackAMole()
                 } else if (clickedItemName === 'connect-four') {
                     connectFour()
+                } else if (clickedItemName === 'snake') {
+                    snake()
                 }
             }
         }

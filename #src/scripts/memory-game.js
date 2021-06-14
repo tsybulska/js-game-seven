@@ -27,9 +27,9 @@ function memoryGame(stopGameFlag) {
     ]
 
     const $root = document.querySelector('.memory-game__root')
-    let $alert = document.querySelector('#memory-game__alert')
-    let $result = document.querySelector('#memory-game__result')
-    const $buttonNewGame = document.querySelector('#memory-game__button')
+    let $alert = document.getElementById('memory-game__alert')
+    let $result = document.getElementById('memory-game__result')
+    const $buttonNewGame = document.getElementById('memory-game__button')
     const alertNewGame = `Let's get started!`
     const searchImgPath = './assets/icons/sprite.svg#search'
     const checkImgPath = './assets/icons/sprite.svg#check'

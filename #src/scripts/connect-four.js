@@ -72,9 +72,9 @@ function connectFour(stopGameFlag) {
     ]
 
     const $root = document.querySelector('.connect-four__root')
-    let $alert = document.querySelector('#connect-four__alert')
-    let $player = document.querySelector('#connect-four__player')
-    const $buttonNewGame = document.querySelector('#connect-four__button')
+    let $alert = document.getElementById('connect-four__alert')
+    let $player = document.getElementById('connect-four__player')
+    const $buttonNewGame = document.getElementById('connect-four__button')
     const alertNewGame = `Let's get started!`
     let currentPlayer = 1
     let winFlag = false

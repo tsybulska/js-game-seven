@@ -74,4 +74,30 @@
             background: linear-gradient(to bottom, rgb(68, 68, 68) 0%, #000000 100%);
         }
     }
+
+    .snake {
+        display: flex;
+        width: 302px;
+
+        &__root {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            border: 1px solid black;
+
+            div {
+                width: 30px;
+                height: 30px;
+                border: 1px solid black;
+            }
+        }
+
+        .snake {
+            background-color: blue;
+        }
+
+        .apple {
+            background-color: red;
+        }
+    }
 }

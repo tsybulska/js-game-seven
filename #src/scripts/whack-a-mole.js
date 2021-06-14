@@ -1,11 +1,11 @@
 function whackAMole(stopGameFlag) {
     const $root = document.querySelector('.whack-a-mole__root')
-    let $time = document.querySelector('#whack-a-mole__time')
-    let $result = document.querySelector('#whack-a-mole__result')
-    const $buttonNewGame = document.querySelector('#whack-a-mole__button')
+    let $time = document.getElementById('whack-a-mole__time')
+    let $result = document.getElementById('whack-a-mole__result')
+    const $buttonNewGame = document.getElementById('whack-a-mole__button')
     const imgPath = './assets/icons/sprite.svg#smiley'
     const hitImgPath = './assets/icons/sprite.svg#smiley-f'
-    
+
     let squares
     const squareAmount = 6
     const timeStart = 60
