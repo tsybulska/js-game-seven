@@ -76,7 +76,6 @@
     }
 
     .snake {
-        display: flex;
         width: 302px;
 
         &__root {
@@ -93,11 +92,11 @@
         }
 
         .snake {
-            background-color: blue;
+            background: linear-gradient(to bottom, rgb(68, 68, 68) 0%, #000000 100%);
         }
 
         .apple {
-            background-color: red;
+            background: linear-gradient(to bottom, #eb1515 0%, #ad0505 100%);
         }
     }
 }

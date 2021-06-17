@@ -15,6 +15,7 @@ function snake(stopGameFlag) {
     let result = 0
     let intervalTime = 0
     let interval = 0
+    let speed = 0.9
 
     function createBoard() {
         for (let i = 0; i < squareAmount; i++) {
@@ -26,10 +27,37 @@ function snake(stopGameFlag) {
     }
 
     function moveOutcomes() {
-        let tail = currentSnake.pop()
-        squares[tail].classList.remove('snake')
-        currentSnake.unshift(currentSnake[0] + direction)
-        squares[currentSnake[0]].classList.add('snake')
+        let head = currentSnake[0]
+
+        if (
+            (head + width >= (width * width) && direction === width ) || // hits bottom
+            (currentSnake[0] % width === width - 1 && direction === 1) || // hits right
+            (head % width === 0 && direction === -1) || // hits left
+            (head - width < 0 && direction === -width) || // hits the top
+            squares[head + direction].classList.contains('snake') // goes into itself
+        ) {
+            $alert.textContent = 'Boom Crash! Your score is ' + result
+            return clearInterval(interval)
+
+        } else {
+            let tail = currentSnake.pop()
+            squares[tail].classList.remove('snake')
+            currentSnake.unshift(head + direction)
+            head = currentSnake[0]
+
+            if (squares[head].classList.contains('apple')) {
+                squares[head].classList.remove('apple')
+                currentSnake.push(tail)
+                randomApple()
+                result++
+                $result.textContent = result
+                clearInterval(interval)
+                intervalTime = intervalTime * speed
+                interval = setInterval(moveOutcomes, intervalTime)
+            }
+
+            squares[head].classList.add('snake')
+        }
     }
 
     function control(e) {
@@ -47,7 +75,9 @@ function snake(stopGameFlag) {
     }
 
     function randomApple() {
-        while (squares[appleIndex].classList.contains('snake')) appleIndex = Math.floor(Math.random() * squares.length)
+        do {
+            appleIndex = Math.floor(Math.random() * squares.length)
+        } while (squares[appleIndex].classList.contains('snake'))
         squares[appleIndex].classList.add('apple')
     }
 
@@ -57,7 +87,6 @@ function snake(stopGameFlag) {
         clearInterval(interval)
         direction = 1
         intervalTime = 1000
-        interval = setInterval(moveOutcomes, intervalTime)
         currentIndex = 0
         currentSnake = [2, 1, 0]
         $alert.textContent = alertNewGame
@@ -71,6 +100,7 @@ function snake(stopGameFlag) {
         createBoard()
         currentSnake.forEach(index => squares[index].classList.add('snake'))
         randomApple()
+        interval = setInterval(moveOutcomes, intervalTime)
     }
 
     if (stopGameFlag) {
