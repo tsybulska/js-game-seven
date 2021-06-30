@@ -99,4 +99,37 @@
             background: linear-gradient(to bottom, #eb1515 0%, #ad0505 100%);
         }
     }
+
+    .space-invaders {
+        width: 302px;
+
+        &__root {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            border: 1px solid black;
+
+            div {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .shooter {
+            background-color: blue;
+        }
+
+        .invader {
+            background-color: purple;
+            border-radius: 10px;
+        }
+
+        .laser {
+            background-color: orange;
+        }
+
+        .boom {
+            background-color: red;
+        }
+    }
 }

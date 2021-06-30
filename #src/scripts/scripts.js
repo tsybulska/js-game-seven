@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         whackAMole(stopGameFlag)
         connectFour(stopGameFlag)
         snake(stopGameFlag)
+        spaceInvaders(stopGameFlag)
 
         for (let i = 0; i < gameContent.length; i++) {
             gameContent[i].style.display = 'none'
@@ -57,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     connectFour()
                 } else if (clickedItemName === 'snake') {
                     snake()
+                } else if (clickedItemName === 'space-invaders') {
+                    spaceInvaders()
                 }
             }
         }
