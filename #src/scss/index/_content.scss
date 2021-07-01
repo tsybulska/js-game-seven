@@ -132,4 +132,51 @@
             background-color: red;
         }
     }
+
+    .frogger {
+        width: 299px;
+
+        &__root {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            border: 1px solid black;
+
+            div {
+                width: 33px;
+                height: 33px;
+                border: 1px solid black;
+            }
+        }
+
+        .ending-block {
+            background-color: red;
+        }
+
+        .c1 {
+            background-color: black;
+        }
+
+        .l1,
+        .l2,
+        .l3 {
+            background-color: brown;
+        }
+
+        .l4,
+        .l5,
+        .lf2,
+        .lf3 {
+            background-color: lightblue;
+        }
+
+        .c2,
+        .c3 {
+            background-color: grey;
+        }
+
+        .frog {
+            background-color: darkgreen;
+        }
+    }
 }

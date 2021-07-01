@@ -4,11 +4,9 @@ function spaceInvaders(stopGameFlag) {
     let $result = document.getElementById('space-invaders__result')
     const $buttonNewGame = document.getElementById('space-invaders__button')
     const alertNewGame = `Let's get started!`
-    let winFlag = false
-
-    let squares
     const squareAmount = 225 // 15*15
     const width = 15
+    let squares
     let direction
     let result
     let currentShooterIndex
@@ -142,7 +140,6 @@ function spaceInvaders(stopGameFlag) {
     }
 
     function clearGame() {
-        winFlag = false
         direction = 1
         result = 0
         $result.textContent = result

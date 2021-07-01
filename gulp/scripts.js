@@ -11,6 +11,7 @@ const terser = require('gulp-terser')
 module.exports = function scripts() {
     return gulp.src([
         './node_modules/svgxuse/svgxuse.js',
+        './#src/scripts/frogger.js',
         './#src/scripts/space-invaders.js',
         './#src/scripts/snake.js',
         './#src/scripts/connect-four.js',
