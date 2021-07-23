@@ -91,6 +91,7 @@ function snake(stopGameFlag) {
         currentSnake = [2, 1, 0]
         $alert.textContent = alertNewGame
         $root.textContent = ''
+        document.removeEventListener('keyup', control)
     }
 
     function newGame() {
@@ -101,6 +102,7 @@ function snake(stopGameFlag) {
         currentSnake.forEach(index => squares[index].classList.add('snake'))
         randomApple()
         interval = setInterval(moveOutcomes, intervalTime)
+        document.addEventListener('keyup', control)
     }
 
     if (stopGameFlag) {
@@ -109,5 +111,4 @@ function snake(stopGameFlag) {
     }
 
     $buttonNewGame.addEventListener('click', newGame)
-    document.addEventListener('keyup', control)
 }

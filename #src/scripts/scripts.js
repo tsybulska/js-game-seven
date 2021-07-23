@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         snake(stopGameFlag)
         spaceInvaders(stopGameFlag)
         frogger(stopGameFlag)
+        tetris(stopGameFlag)
 
         for (let i = 0; i < gameContent.length; i++) {
             gameContent[i].style.display = 'none'
@@ -63,6 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     spaceInvaders()
                 } else if (clickedItemName === 'frogger') {
                     frogger()
+                } else if (clickedItemName === 'tetris') {
+                    tetris()
                 }
             }
         }

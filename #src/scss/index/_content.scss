@@ -150,7 +150,7 @@
         }
 
         .ending-block {
-            background-color: red;
+            background-color: lightgreen;
         }
 
         .c1 {
@@ -160,23 +160,62 @@
         .l1,
         .l2,
         .l3 {
-            background-color: brown;
+            background-color: yellow;
         }
 
         .l4,
-        .l5,
-        .lf2,
-        .lf3 {
+        .l5 {
             background-color: lightblue;
         }
 
         .c2,
         .c3 {
-            background-color: grey;
+            background-color: lightgray;
         }
 
         .frog {
             background-color: darkgreen;
+        }
+    }
+
+    .tetris {
+        width: 302px;
+
+        &__root {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            border: 1px solid black;
+
+            div {
+                width: 30px;
+                height: 30px;
+                border: 1px solid black;
+            }
+        }
+
+        .color1 {
+            background-color: blue;
+        }
+
+        .color2 {
+            background-color: purple;
+        }
+
+        .color3 {
+            background-color: green;
+        }
+
+        .color4 {
+            background-color: yellow;
+        }
+
+        .color5 {
+            background-color: red;
+        }
+
+        .end {
+            background-color: #d8edea;
         }
     }
 }

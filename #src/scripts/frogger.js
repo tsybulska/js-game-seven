@@ -3,6 +3,8 @@ function frogger(stopGameFlag) {
     let $alert = document.getElementById('frogger__alert')
     let $time = document.getElementById('frogger__time')
     const $buttonNewGame = document.getElementById('frogger__button')
+    const checkImgPath = './assets/icons/sprite.svg#check'
+    const closeImgPath = './assets/icons/sprite.svg#close'
     const alertNewGame = `Let's get started!`
     const squareAmount = 81 // 9*9
     const width = 9
@@ -24,7 +26,11 @@ function frogger(stopGameFlag) {
         }
 
         squares = $root.querySelectorAll('div')
-        squares[Math.floor(width/2)].classList.add('ending-block')
+        let endingBlock = squares[Math.floor(width/2)]
+        endingBlock.classList.add('ending-block')
+        endingBlock.appendChild(document.createElement('img'))
+        endingBlock.querySelector('img').setAttribute('src', checkImgPath)
+        endingBlock.querySelector('img').setAttribute('alt', 'ending-block')
         squares[currentIndex].classList.add('frog')
 
         let logCounter = 0
@@ -188,7 +194,6 @@ function frogger(stopGameFlag) {
     function win() {
         if (squares[4].classList.contains('frog')) {
             $alert.textContent = 'You Won'
-            squares[currentIndex].classList.remove('frog')
             clearInterval(timerId)
             document.removeEventListener('keyup', moveFrog)
         }
@@ -200,7 +205,9 @@ function frogger(stopGameFlag) {
         || (squares[currentIndex].classList.contains('l4'))
         ) {
             $alert.textContent = 'You Lose'
-            squares[currentIndex].classList.remove('frog')
+            squares[currentIndex].appendChild(document.createElement('img'))
+            squares[currentIndex].querySelector('img').setAttribute('src', closeImgPath)
+            squares[currentIndex].querySelector('img').setAttribute('alt', 'frog')
             clearInterval(timerId)
             document.removeEventListener('keyup', moveFrog)
         }
@@ -230,13 +237,8 @@ function frogger(stopGameFlag) {
         $buttonNewGame.textContent = 'New game'
         clearGame()
         createBoard()
-
-        /*if (timerId) {
-            clearInterval(timerId)
-        } else {*/
-            timerId = setInterval(movePieces, 1000)
-            document.addEventListener('keyup', moveFrog)
-        //}
+        timerId = setInterval(movePieces, 1000)
+        document.addEventListener('keyup', moveFrog)
     }
 
     $buttonNewGame.addEventListener('click', newGame)
