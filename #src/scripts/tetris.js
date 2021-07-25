@@ -1,5 +1,6 @@
 function tetris(stopGameFlag) {
     const $root = document.querySelector('.tetris__root')
+    let $result = document.getElementById('tetris__result')
     let $alert = document.getElementById('tetris__alert')
     const $buttonNewGame = document.getElementById('tetris__button')
     const alertNewGame = `Let's get started!`
@@ -11,7 +12,7 @@ function tetris(stopGameFlag) {
     let currentColor
     let currentIndex
     let currentRotation = 0
-    let lines
+    let result
     let squares
     let timerId
     const colors =['color1', 'color2', 'color3', 'color4', 'color5']
@@ -52,6 +53,7 @@ function tetris(stopGameFlag) {
     ]
 
     const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+    let random = Math.floor(Math.random() * theTetrominoes.length)
 
     function createBoard() {
         for (let i = 0; i < squareAmount; i++) {
@@ -60,7 +62,7 @@ function tetris(stopGameFlag) {
             $root.appendChild(squareDiv)
         }
 
-        squares = $root.querySelectorAll('div')
+        squares = Array.from($root.querySelectorAll('div'))
     }
 
     function control(e) {
@@ -75,7 +77,7 @@ function tetris(stopGameFlag) {
     }
 
     function randomCurrent() {
-        current = theTetrominoes[Math.floor(Math.random() * theTetrominoes.length)][currentRotation]
+        current = theTetrominoes[random][currentRotation]
     }
 
     function randomColor() {
@@ -130,39 +132,41 @@ function tetris(stopGameFlag) {
     function freeze() {
         if (current.some(index => squares[currentPosition + index + width].classList.contains('base') || squares[currentPosition + index + width].classList.contains('freeze'))) {
             current.forEach(index => squares[index + currentPosition].classList.add('freeze'))
+            random = Math.floor(Math.random() * theTetrominoes.length)
             randomCurrent()
             randomColor()
-            currentPosition = 4
-            addScore()
+            currentPosition = width / 2 - 1
+            addResult()
             gameOver()
         }
     }
 
-    function addScore() {
+    function addResult() {
         for (currentIndex = 0; currentIndex < squareAmount; currentIndex += width) {
             const row = [currentIndex, currentIndex + 1, currentIndex + 2, currentIndex + 3, currentIndex + 4, currentIndex + 5, currentIndex + 6, currentIndex + 7, currentIndex + 8, currentIndex + 9]
 
             if (row.every(index => squares[index].classList.contains('freeze'))) {
-                score += 10
-                lines += 1
-                $alert.textContent = score + ', lines ' + lines
+                result += 1
+                $result.textContent = result
 
                 row.forEach(index => {
-                    squares[index].classList.remove('freeze') || squares[index].classList.remove('block')
+                    squares[index].classList.remove('block')
+                    squares[index].classList.remove('freeze')
+
                     colors.forEach(color => {
                         if (squares[index].classList.contains(color)) squares[index].classList.remove(color)
                     })
                 })
 
-                const squaresRemoved = squares.splice(currentIndex, width)
+                let squaresRemoved = squares.splice(currentIndex, width)
                 squares = squaresRemoved.concat(squares)
-                squares.forEach(cell => grid.appendChild(cell))
+                squares.forEach(cell => $root.appendChild(cell))
             }
         }
     }
 
     function gameOver() {
-        if (current.some(index => squares[currentPosition + index].classList.contains('freeze'))) {
+        if (current.some(index => squares[currentPosition + width].classList.contains('freeze'))) {
             $alert.textContent = 'End'
             clearInterval(timerId)
             timerId = null
@@ -175,8 +179,9 @@ function tetris(stopGameFlag) {
         timerId = null
         currentIndex = 0
         currentRotation = 0
-        currentPosition = 4
-        lines = 0
+        currentPosition = width / 2 - 1
+        result = 0
+        $result.textContent = 0
         $alert.textContent = alertNewGame
         $root.textContent = ''
     }
@@ -186,6 +191,7 @@ function tetris(stopGameFlag) {
         $buttonNewGame.textContent = 'New game'
         clearGame()
         createBoard()
+        random = Math.floor(Math.random() * theTetrominoes.length)
         randomCurrent()
         randomColor()
         draw()
